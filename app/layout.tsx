@@ -6,7 +6,7 @@ const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
     title: 'Physical',
-    description: 'My App Description',
+    description: 'physics experiments simulation',
 }
 
 export default function RouteLayout({
