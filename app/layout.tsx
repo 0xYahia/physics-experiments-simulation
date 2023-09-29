@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
-    title: 'Physical',
-    description: 'physics experiments simulation',
+    title: 'physics experiments simulation',
+    description: 'My App Description',
 }
 
 export default function RouteLayout({
