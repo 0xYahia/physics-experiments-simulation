@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function test(){
 
@@ -13,9 +14,18 @@ export default function test(){
         </div>
         {/* Cards */}
         <div className='flex justify-center gap-16 mx-28'>
+            <Link href={'./weight'}>
+                <div className='w-[363px] flex justify-center flex-col rounded-2xl cursor-pointer'>
+                    <Image src='/assets/image2.webp' alt="image1" width={363} height={363} className='w-full' />
+                    <div className='bg-[#969696] p-6 flex items-center gap-[18px]'>
+                        <div className='w-[35px] h-[35px] rounded-full bg-[#EDEDED]'></div>
+                        <p className="text-[24px] mt-2 text-white font-medium">تجربة الوزن والثقل</p>
+                    </div>
+                </div>
+            </Link>
             <div className='w-[363px] flex justify-center flex-col rounded-2xl'>
                 <div className='flex justify-center'>
-                    <Image src='/assets/image2.jpg' alt="image1" width={363} height={363} className='w-full' />
+                    <Image src='/assets/image2.webp' alt="image1" width={363} height={363} className='w-full' />
                 </div>
                 <div className='bg-[#969696] p-6 flex items-center gap-[18px]'>
                     <div className='w-[35px] h-[35px] rounded-full bg-[#EDEDED]'></div>
@@ -24,16 +34,7 @@ export default function test(){
             </div>
             <div className='w-[363px] flex justify-center flex-col rounded-2xl'>
                 <div className='flex justify-center'>
-                    <Image src='/assets/image2.jpg' alt="image1" width={363} height={363} className='w-full' />
-                </div>
-                <div className='bg-[#969696] p-6 flex items-center gap-[18px]'>
-                    <div className='w-[35px] h-[35px] rounded-full bg-[#EDEDED]'></div>
-                    <p className="text-[24px] mt-2 text-white font-medium">تجربة الوزن والثقل</p>
-                </div>
-            </div>
-            <div className='w-[363px] flex justify-center flex-col rounded-2xl'>
-                <div className='flex justify-center'>
-                    <Image src='/assets/image2.jpg' alt="image1" width={363} height={363} className='w-full' />
+                    <Image src='/assets/image2.webp' alt="image1" width={363} height={363} className='w-full' />
                 </div>
                 <div className='bg-[#969696] p-6 flex items-center gap-[18px]'>
                     <div className='w-[35px] h-[35px] rounded-full bg-[#EDEDED]'></div>
