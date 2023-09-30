@@ -65,7 +65,7 @@ export default function test(){
                 <div className='border-[1px] border-[#CCD2D9] rounded-lg'>
                     <div className='images flex rounded-lg p-3'>
                         <div className=''>
-                            <Image src='/assets/mars.svg' alt="image1" width={381} height={704} />
+                            <Image src='/assets/mars.svg' alt="image1" width={381} height={704} className='rounded-r-lg' />
                             <div></div>
                         </div>
                         <div>
@@ -73,13 +73,13 @@ export default function test(){
                             <div></div>
                         </div>
                         <div>
-                            <Image src='/assets/earth.svg' alt="image1" width={381} height={704 } />
+                            <Image src='/assets/earth.svg' alt="image1" width={381} height={704 } className='rounded-l-lg' />
                             <div></div>
                         </div>
                     </div>
                     <div className="content flex justify-center items-center px-10 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
                         <Image src='/assets/right.png' alt="image1" width={40} height={40} />
-                        <p>في هذه التجربه سوف نتعرف علي المقصود بالوزن (الثقل).</p>
+                        <p>قم بإيقاف التجربه مستخدما زر الايقاف والتشغيل, ولاحظ وزن كل كره علي الكواكب المختلفه خلال قيمة الوزن المصاحب للكره.</p>
                         <Image src='/assets/left.png' alt="image1" width={40} height={40} />
                     </div>
                 </div>
