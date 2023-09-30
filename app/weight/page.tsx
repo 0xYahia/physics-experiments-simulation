@@ -28,28 +28,28 @@ export default function test(){
             </div>
             {/* Content */}
             <div className='content mt-20 flex'>
-                <div className='flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#5484FF]'>
+                <div className='flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#295ad8] w-[138px]'>
                     <div className='balls  flex flex-col gap-2'>
                         <div className='bg-[#466FD8] rounded-md flex items-center flex-col'>
                             <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
-                                <Image src='/assets/ball1.png' alt="image1" width={94} height={94} className='z-10' />
-                                <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-16' />
+                                <Image src='/assets/ball1.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:w-[102px] hover:h-[102px]' />
+                                <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-20' />
                             </div>
-                            <p className='mt-2 text-white font-extrabold'>1 كيلو جرام</p>
+                            <p className='mt-7 text-white font-extrabold'>1 كيلو جرام</p>
                         </div>
                         <div className='bg-[#466FD8] rounded-md flex items-center flex-col'>
                             <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
-                                <Image src='/assets/ball2.png' alt="image1" width={94} height={94} className='z-10' />
-                                <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-16' />
+                                <Image src='/assets/ball2.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:w-[102px] hover:h-[102px]' />
+                                <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-20' />
                             </div>
-                            <p className='mt-2 text-white font-extrabold'>2 كيلو جرام</p>
+                            <p className='mt-7 text-white font-extrabold'>2 كيلو جرام</p>
                         </div>
                         <div className='bg-[#466FD8] rounded-md flex items-center flex-col'>
                             <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
-                                <Image src='/assets/ball3.png' alt="image1" width={94} height={94} className='z-10' />
-                                <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-16' />
+                                <Image src='/assets/ball3.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:w-[102px] hover:h-[102px]' />
+                                <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-20' />
                             </div>
-                            <p className='mt-2 text-white font-extrabold'>3 كيلو جرام</p>
+                            <p className='mt-7 text-white font-extrabold'>3 كيلو جرام</p>
                         </div>
                     </div>
                     <div className='flex flex-col items-center gap-6'>
