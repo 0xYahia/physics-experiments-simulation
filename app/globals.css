@@ -15,13 +15,13 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-/*
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+  display: flex;
+  justify-content: center;
+  background: #F0F2F7;
+}
+
+.mainBalls{
+  box-shadow: -3px 3px 0px 0px #8B92A3, -2px 2px 0px 0px #BDC1CA, -1px 1px 0px 0px #8B91A3;
+}

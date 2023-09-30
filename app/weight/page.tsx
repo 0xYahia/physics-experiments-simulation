@@ -27,27 +27,28 @@ export default function test(){
                 </div>
             </div>
             {/* Content */}
-            <div className='content mt-20 flex'>
-                <div className='flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#295ad8] w-[138px]'>
-                    <div className='balls  flex flex-col gap-2'>
-                        <div className='bg-[#466FD8] rounded-md flex items-center flex-col h-44'>
+            <div className='content mt-20 flex justify-center gap-6'>
+                {/* Sidebar */}
+                <div className='mainBalls flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#5484FF] w-[138px]'>
+                    <div className='balls flex flex-col gap-1 w-full'>
+                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
                             <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
                             <Image src='/assets/ball1.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-linear cursor-pointer hover:scale-110' />
-                            <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-[68px]' />
+                            <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
                             </div>
-                            <p className='mt-[132px] text-white font-extrabold'>1 كيلو جرام</p>
+                            <p className='mt-7 text-white font-extrabold'>1 كيلو جرام</p>
                         </div>
-                        <div className='bg-[#466FD8] rounded-md flex items-center flex-col'>
+                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
                             <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
                                 <Image src='/assets/ball2.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:scale-110' />
-                                <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-[68px]' />
+                                <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
                             </div>
                             <p className='mt-7 text-white font-extrabold'>2 كيلو جرام</p>
                         </div>
-                        <div className='bg-[#466FD8] rounded-md flex items-center flex-col'>
+                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
                             <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
                                 <Image src='/assets/ball3.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:scale-110' />
-                                <Image src='/assets/base.png' alt="image1" width={68} height={68} className='absolute top-[68px]' />
+                                <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
                             </div>
                             <p className='mt-7 text-white font-extrabold'>3 كيلو جرام</p>
                         </div>
@@ -60,7 +61,27 @@ export default function test(){
                         </div>
                     </div>
                 </div>
-                <div className='plants'>
+                {/* Plants */}
+                <div className='border-[1px] border-[#CCD2D9] rounded-lg'>
+                    <div className='images flex rounded-lg p-3'>
+                        <div className=''>
+                            <Image src='/assets/mars.svg' alt="image1" width={381} height={704} />
+                            <div></div>
+                        </div>
+                        <div>
+                            <Image src='/assets/moon.svg' alt="image1" width={381} height={704} />
+                            <div></div>
+                        </div>
+                        <div>
+                            <Image src='/assets/earth.svg' alt="image1" width={381} height={704 } />
+                            <div></div>
+                        </div>
+                    </div>
+                    <div className="content flex justify-center items-center px-10 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
+                        <Image src='/assets/right.png' alt="image1" width={40} height={40} />
+                        <p>في هذه التجربه سوف نتعرف علي المقصود بالوزن (الثقل).</p>
+                        <Image src='/assets/left.png' alt="image1" width={40} height={40} />
+                    </div>
                 </div>
             </div>
         </div>
