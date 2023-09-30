@@ -1,8 +1,12 @@
+import { Dir } from 'fs'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Tajawal } from 'next/font/google'
 
-const inter = Inter({subsets: ['latin']})
+const tajawal = Tajawal({
+  subsets: ['arabic'],
+  weight: '200'
+})
 
 export const metadata: Metadata = {
     title: 'physics experiments simulation',
@@ -15,8 +19,8 @@ export default function RouteLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ar">
-      <body  className={inter.className}>{children}</body>
+    <html dir='rtl'>
+      <body  className={tajawal.className}>{children}</body>
     </html>
   )
 }
