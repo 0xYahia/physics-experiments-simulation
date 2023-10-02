@@ -1,7 +1,7 @@
 export const data = [
   {
     id:1,
-    name: 'sara',
+    name: 'hazem',
   },
   {
     id:2,
@@ -25,7 +25,7 @@ export const data = [
   },
   {
     id:7,
-    name: 'eman',
+    name: 'khaled',
   },
   {
     id:8,
