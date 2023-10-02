@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Test(){
-  const [contentIndex, setContentIndex] = useState(0);
-  const contentList = [
+    const [contentIndex, setContentIndex] = useState(0);
+    const contentList = [
         'في هذه التجربه سوف نتعرف علي المقصود بالوزن (الثقل).',
         'اسحب احدي الكرات من اليمين واجعلها تسقط سقوطا حرا علي كل من الكواكب المبينه بالشكل, \n مع ملاحظة قيمة تسارع الجاذبيه علي الكواكب المختلفه.',
         'قم بإيقاف التجربه مستخدما زر الايقاف والتشغيل, ولاحظ وزن كل كره علي الكواكب المختلفه \n خلال قيمة الوزن المصاحب للكره.',
