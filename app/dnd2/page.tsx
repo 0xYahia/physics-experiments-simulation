@@ -1,14 +1,14 @@
 'use client'
-import { DndContext, closestCenter } from '@dnd-kit/core';
-import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { balls } from './images';
+import {DndContext} from '@dnd-kit/core';
+import {SortableContext} from '@dnd-kit/sortable';
+import { DndMonitorContext } from '@dnd-kit/core/dist/components/DndMonitor';
 
 export default function Test(){
     const [contentIndex, setContentIndex] = useState(0);
+    const [items] = useState(['1', '2', '3']);
     const contentList = [
         'في هذه التجربه سوف نتعرف علي المقصود بالوزن (الثقل).',
         'اسحب احدي الكرات من اليمين واجعلها تسقط سقوطا حرا علي كل من الكواكب المبينه بالشكل, \n مع ملاحظة قيمة تسارع الجاذبيه علي الكواكب المختلفه.',
@@ -28,34 +28,6 @@ export default function Test(){
             setContentIndex(contentIndex - 1)
         }
     }
-
-    const [images, setImages] = useState(balls);
-
-    const onDragEnd =(event:any)=> {
-        console.log('onDragEnd', event)
-        const {active, over} = event
-        if(active.id === over.id) return
-        setImages((image) => {
-            const oldIndex = images.findIndex((image) => image.id === active.id)
-            const newIndex = images.findIndex((image) => image.id === over.id)
-        //   const newUsers = [...images]
-        //   newUsers.splice(oldIndex, 1)
-        //   newUsers.splice(newIndex, 0, images[oldIndex])
-        //   return newUsers
-          return arrayMove(images, oldIndex, newIndex)
-        })
-        }
-
-        const SortableImage = ({ball}:{ball: {name:string, id: number, src: string}})=> {
-            const {attributes, listeners, setNodeRef, transform, transition, isDragging} = useSortable({id: ball.id})
-            const style = {
-                transition,
-                transform: CSS.Transform.toString(transform)
-            }
-            return(
-                    <Image ref={setNodeRef} style={style} {...attributes} {...listeners} src={ball.src} alt={ball.name} width={94} height={94} className='z-10 transition-all duration-75 ease-linear cursor-pointer hover:scale-110' />
-            )
-            }
 
     return (
         <div className="container px-6">
@@ -83,59 +55,72 @@ export default function Test(){
             {/* Content */}
             <div className='content mt-20 flex justify-center gap-6'>
                 {/* Sidebar */}
-                <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd} >
-                    <SortableContext items={balls} strategy={verticalListSortingStrategy}>
-                        <div className='mainBalls flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#5484FF] w-[138px]'>
-                            <div className='balls flex flex-col gap-1 w-full'>
-                                <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
-                                    <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
-                                            {balls.map((ball) => (
-                                                <>
-                                                    <SortableImage key={ball.id} ball={ball} />
-                                                    <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
-                                                </>
-                                            ))}
-                                    </div>
-                                    <p className='mt-7 text-white font-extrabold'>1 كيلو جرام</p>
-                                </div>
+                <div className='mainBalls flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#5484FF] w-[138px]'>
+                    <div className='balls flex flex-col gap-1 w-full'>
+                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
+                            <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
+                            <Image src='/assets/ball1.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-linear cursor-pointer hover:scale-110' />
+                            <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
                             </div>
-                            <div className='flex flex-col items-center gap-6'>
-                                <hr className='bg-[##ffffff54] w-[110px] h-[1px]'/>
-                                <button className='bg-[#FBAC14]  w-[110px] h-[50px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
-                                <div className='p-2 mt-2 w-[50px] h-[50px] rounded-full bg-[#FBAC14] cursor-pointer'>
-                                    <Image src='/assets/refresh.png' alt="image1" width={32} height={32} />
-                                </div>
-                            </div>
+                            <p className='mt-7 text-white font-extrabold'>1 كيلو جرام</p>
                         </div>
-                    {/* Plants */}
-                    <div className='border-[1px] border-[#CCD2D9] rounded-lg'>
-                        <div className='images flex rounded-lg p-3'>
-                            <div className=''>
-                                <Image src='/assets/mars.svg' alt="image1" width={381} height={704} className='rounded-r-lg' />
-                                <div></div>
+                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
+                            <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
+                                <Image src='/assets/ball2.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:scale-110' />
+                                <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
                             </div>
-                            <div>
-                                <Image src='/assets/moon.svg' alt="image1" width={381} height={704} />
-                                <div></div>
-                            </div>
-                            <div>
-                                <Image src='/assets/earth.svg' alt="image1" width={381} height={704 } className='rounded-l-lg' />
-                                <div></div>
-                            </div>
+                            <p className='mt-7 text-white font-extrabold'>2 كيلو جرام</p>
                         </div>
-                        <div className="content flex justify-center items-center px-10 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
-                            {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1"width={40} height={40} className='cursor-pointer' onClick={handleNextClick} /> :
-                            <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer' />
-                            }
-                            <p className='text-[22px] font-medium text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
-                            {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handlePrevClick} /> :
-                            <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer' />
-                            }
+                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
+                            <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
+                                <Image src='/assets/ball3.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:scale-110' />
+                                <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
+                            </div>
+                            <p className='mt-7 text-white font-extrabold'>3 كيلو جرام</p>
                         </div>
                     </div>
-                    </SortableContext>
-                </DndContext>
+                    <div className='flex flex-col items-center gap-6'>
+                        <hr className='bg-[##ffffff54] w-[110px] h-[1px]'/>
+                        <button className='bg-[#FBAC14]  w-[110px] h-[50px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
+                        <div className='p-2 mt-2 w-[50px] h-[50px] rounded-full bg-[#FBAC14] cursor-pointer'>
+                            <Image src='/assets/refresh.png' alt="image1" width={32} height={32} />
+                        </div>
+                    </div>
+                </div>
+                {/* Plants */}
+                <div className='border-[1px] border-[#CCD2D9] rounded-lg'>
+                    <div className='images flex rounded-lg p-3'>
+                        <div className=''>
+                            <Image src='/assets/mars.svg' alt="image1" width={381} height={704} className='rounded-r-lg' />
+                            <div></div>
+                        </div>
+                        <div>
+                            <Image src='/assets/moon.svg' alt="image1" width={381} height={704} />
+                            <div></div>
+                        </div>
+                        <div>
+                            <Image src='/assets/earth.svg' alt="image1" width={381} height={704 } className='rounded-l-lg' />
+                            <div></div>
+                        </div>
+                    </div>
+                    <div className="content flex justify-center items-center px-10 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
+                        {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1"width={40} height={40} className='cursor-pointer' onClick={handleNextClick} /> :
+                        <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer' />
+                        }
+                        <p className='text-[22px] font-medium text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
+                        {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handlePrevClick} /> :
+                        <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer' />
+                        }
+                    </div>
+                </div>
             </div>
+            <DndContext>
+                <SortableContext items={items}>
+                    {items.map((item) => (
+                        <div className='bg-black text-white font-black text-[62px] flex items-center justify-center' key={item}>{item}</div>
+                    ))}
+                </SortableContext>
+            </DndContext>
         </div>
         )
 }
