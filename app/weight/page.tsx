@@ -2,8 +2,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import MyImage from '../dnd2/images';
 
 export default function Test(){
+    const balls = [
+        {name: 'ball1', id: '1', src: '/assets/ball1.png'},
+        {name: 'ball2', id: '2', src: '/assets/ball2.png'},
+        {name: 'ball3', id: '3', src: '/assets/ball3.png'},
+    ]
+    const plants = [
+        {name: 'mars', id: '4', src: '/assets/mars.svg', alt: 'mars'},
+        {name: 'moon', id: '5', src: '/assets/moon.svg', alt: 'moon'},
+        {name: 'earth', id: '6', src: '/assets/earth.svg', alt: 'earth'},
+    ]
     const [contentIndex, setContentIndex] = useState(0);
     const contentList = [
         'في هذه التجربه سوف نتعرف علي المقصود بالوزن (الثقل).',
@@ -53,27 +64,15 @@ export default function Test(){
                 {/* Sidebar */}
                 <div className='mainBalls flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#5484FF] w-[138px]'>
                     <div className='balls flex flex-col gap-1 w-full'>
-                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
-                            <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
-                            <Image src='/assets/ball1.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-linear cursor-pointer hover:scale-110' />
-                            <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
+                        {balls.map((ball) => (
+                            <div key={ball.id} className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
+                                <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
+                                    <MyImage key={ball.id} src={ball.src} alt={ball.name} width={94} height={94} className='z-10 transition-all duration-75 ease-linear cursor-pointer hover:scale-110' />
+                                    <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
+                                </div>
+                                <p className='mt-7 text-white font-extrabold'>{ball.id} كيلو جرام</p>
                             </div>
-                            <p className='mt-7 text-white font-extrabold'>1 كيلو جرام</p>
-                        </div>
-                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
-                            <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
-                                <Image src='/assets/ball2.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:scale-110' />
-                                <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
-                            </div>
-                            <p className='mt-7 text-white font-extrabold'>2 كيلو جرام</p>
-                        </div>
-                        <div className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
-                            <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
-                                <Image src='/assets/ball3.png' alt="image1" width={94} height={94} className='z-10 transition-all duration-75 ease-in cursor-pointer hover:scale-110' />
-                                <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
-                            </div>
-                            <p className='mt-7 text-white font-extrabold'>3 كيلو جرام</p>
-                        </div>
+                        ))}
                     </div>
                     <div className='flex flex-col items-center gap-6'>
                         <hr className='bg-[##ffffff54] w-[110px] h-[1px]'/>
@@ -107,7 +106,6 @@ export default function Test(){
                         {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handlePrevClick} /> :
                         <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer' />
                         }
-
                     </div>
                 </div>
             </div>
