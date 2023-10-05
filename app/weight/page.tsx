@@ -107,7 +107,6 @@ export default function Test(){
                         {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handlePrevClick} /> :
                         <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer' />
                         }
-
                     </div>
                 </div>
             </div>
