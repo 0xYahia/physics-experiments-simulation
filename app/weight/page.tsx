@@ -6,6 +6,7 @@ import { DndContext, DragOverlay, useDraggable, useDroppable } from '@dnd-kit/co
 import Droppables from './Droppable';
 import Draggable from './Draggable';
 
+
 export default function Test() {
 
     const [plants, setPlants] = useState([
@@ -61,6 +62,9 @@ export default function Test() {
         setIsDropped(false);
     }
 
+    const reload = () => {
+        window.location.reload();
+    }
     return (
         <DndContext onDragEnd={onDragEnd}>
             <div className="container px-6">
@@ -108,7 +112,7 @@ export default function Test() {
                             {/* <Image onClick={dropBall} src='/assets/playDefault.png' alt="image1" width={110} height={50} className='cursor-pointer hover:hidden ' /> */}
                             {/* <Image onClick={dropBall} src='/assets/playHover.png' alt="image1" width={110} height={50} className='cursor-pointer hover:inline-block' /> */}
                             <div className='p-2 mt-2 w-[50px] h-[50px] rounded-full bg-[#FBAC14] cursor-pointer'>
-                                <Image src='/assets/refresh.png' alt="image1" width={32} height={32} />
+                                <Image onClick={reload} src='/assets/refresh.png' alt="image1" width={32} height={32} />
                             </div>
                         </div>
                     </div>
@@ -118,7 +122,7 @@ export default function Test() {
 
                             {plants.map((plant) => (
                                 <Droppables key={plant.id} name={plant.name} title={plant.title} content={plant.content} className='ball' >
-                                    <Image src={plant.src} alt={plant.name} width={381} height={704} className={`rounded-r-lg`} />
+                                    <Image src={plant.src} alt={plant.name} width={381} height={704} className={(plant.name == 'mars' ? `rounded-r-lg`: plant.name == 'earth' ? 'rounded-l-lg' : '' )} />
                                 </Droppables>
 
                             ))}
