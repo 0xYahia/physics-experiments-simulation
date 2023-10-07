@@ -27,11 +27,15 @@ body {
 }
 
 .drop-animation-mars {
-  transition: transform 3s ease-in-out; /* Adjust the duration and timing function as needed */
+  transition: all 3s ease-in-out; /* Adjust the duration and timing function as needed */
 }
 .drop-animation-moon {
-  transition: transform 5s ease-in-out; /* Adjust the duration and timing function as needed */
+  transition: all 5s ease-in-out; /* Adjust the duration and timing function as needed */
 }
 .drop-animation-earth {
-  transition: transform 1.5s ease-in-out; /* Adjust the duration and timing function as needed */
+  transition: all 1.5s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+
+.transition {
+  transition: all .3s ease-in-out;
 }

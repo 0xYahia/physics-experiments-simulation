@@ -103,7 +103,9 @@ export default function Test() {
                         </div>
                         <div className='flex flex-col items-center gap-6'>
                             <hr className='bg-[##ffffff54] w-[110px] h-[1px]' />
-                            <button onClick={dropBall} className='bg-[#FBAC14]  w-[110px] h-[50px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
+                            <button onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
+                            {/* <Image onClick={dropBall} src='/assets/playDefault.png' alt="image1" width={110} height={50} className='cursor-pointer hover:hidden ' /> */}
+                            {/* <Image onClick={dropBall} src='/assets/playHover.png' alt="image1" width={110} height={50} className='cursor-pointer hover:inline-block' /> */}
                             <div className='p-2 mt-2 w-[50px] h-[50px] rounded-full bg-[#FBAC14] cursor-pointer'>
                                 <Image src='/assets/refresh.png' alt="image1" width={32} height={32} />
                             </div>
