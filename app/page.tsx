@@ -28,7 +28,6 @@ export default function Test(){
                     </div>
                 </div>
             </Link>
-            <Link href={'./dnd'}>
             <div className='w-[363px] flex justify-center flex-col rounded-2xl'>
                 <div className='flex justify-center'>
                     <Image src='/assets/test1.svg' alt="image1" width={363} height={363} className='w-full rounded-t-lg' />
@@ -38,7 +37,6 @@ export default function Test(){
                     <p className="text-[24px] mt-2 text-black font-medium">تجربة الوزن والثقل</p>
                 </div>
             </div>
-            </Link>
             <div className='w-[363px] flex justify-center flex-col rounded-2xl'>
                 <div className='flex justify-center'>
                     <Image src='/assets/test1.svg' alt="image1" width={363} height={363} className='w-full rounded-t-lg' />

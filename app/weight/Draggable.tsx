@@ -9,7 +9,7 @@ export default function Draggable(props:any) {
   });
   const style = {
     transform: CSS.Translate.toString(transform),
-    zIndex: 100,
+    zIndex: 40,
     };
 
   return (

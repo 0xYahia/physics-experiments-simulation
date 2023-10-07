@@ -34,7 +34,7 @@ export default function Test() {
         'علي اي كوكب من الكواكب الموجوده يكون وزن الجسم اكبر ؟ \n أ- علي الارض            ب- علي القمر            ج- علي المريخ',
     ]
 
-   const style:any={
+    const style: any = {
         transform: `translate(${translateX}px, ${translateY}px)`,
     }
 
@@ -90,10 +90,10 @@ export default function Test() {
                     <div className='mainBalls flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#5484FF] w-[138px]'>
                         <div className='balls flex flex-col gap-1 w-full'>
                             {balls.map((ball) => (
-                                <div key={ball.id} className=' bg-[#466fd8] rounded-md flex items-center flex-col'>
+                                <div key={ball.id} className=' bg-[#466fd8] rounded-md flex items-center flex-col pb-1'>
                                     <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
                                         <Draggable name={ball.name} translateX={translateX} translateY={translateY} >
-                                            <Image style={(activeBallId == ball.name)? style : null}  src={ball.src} alt={ball.name} width={94} height={94} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110`}  />
+                                            <Image style={(activeBallId == ball.name) ? style : null} src={ball.src} alt={ball.name} width={94} height={94} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} />
                                         </Draggable>
                                         <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
                                     </div>
@@ -131,7 +131,16 @@ export default function Test() {
                                 ) : null}
                             </DragOverlay>
                         </div>
-                        <div className="content flex justify-center items-center px-10 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
+                        {/* <div className="content flex justify-start relative items-center px-10 py-8  border-t-[1px] border-[#CCD2D9]">
+                            {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer absolute right-0 top-2/4' onClick={handleNextClick} /> :
+                                <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer absolute right-0 top-2/4' />
+                            }
+                            <p className='text-[22px] w-5/6 font-medium text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
+                            {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer absolute left-0 top-2/4' onClick={handlePrevClick} /> :
+                                <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer absolute left-0 top-2/4' />
+                            }
+                        </div> */}
+                        <div className="content h-[14%] flex justify-between items-center px-10 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
                             {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handleNextClick} /> :
                                 <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer' />
                             }
