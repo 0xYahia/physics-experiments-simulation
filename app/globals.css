@@ -25,3 +25,13 @@ body {
 .mainBalls{
   box-shadow: -3px 3px 0px 0px #8B92A3, -2px 2px 0px 0px #BDC1CA, -1px 1px 0px 0px #8B91A3;
 }
+
+.drop-animation-mars {
+  transition: transform 3s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+.drop-animation-moon {
+  transition: transform 5s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+.drop-animation-earth {
+  transition: transform 1.5s ease-in-out; /* Adjust the duration and timing function as needed */
+}

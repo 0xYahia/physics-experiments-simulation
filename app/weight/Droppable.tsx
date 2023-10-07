@@ -11,7 +11,7 @@ export default function Droppables(props:any) {
   return (
     <section>
       <div ref={setFirstDroppableRef}>
-        <Image src={props.src} alt={props.name} width={381} height={704} className={`rounded-r-lg`} />
+        {props.children}
       </div>
     </section>
   );
