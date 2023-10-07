@@ -9,9 +9,9 @@ import Draggable from './Draggable';
 export default function Test() {
 
     const [plants, setPlants] = useState([
-        { name: 'mars', id: '4', src: '/assets/mars.svg' },
-        { name: 'moon', id: '5', src: '/assets/moon.svg' },
-        { name: 'earth', id: '6', src: '/assets/earth.svg' },
+        { name: 'mars', id: '4', src: '/assets/mars.svg' ,title: "المريخ", content: "ثابت الجاذبيه = 3.73 متر/ثانيه2"},
+        { name: 'moon', id: '5', src: '/assets/moon.svg', title: "القمر", content: "ثابت الجاذبيه = 1.62 متر/ثانيه2  " },
+        { name: 'earth', id: '6', src: '/assets/earth.svg', title: "الارض", content: "ثابت الجاذبيه = 9.81 متر/ثانيه2" },
     ]);
     const [balls, setBalls] = useState([
         { name: 'ball1', id: '1', src: '/assets/ball1.png' },
@@ -33,6 +33,7 @@ export default function Test() {
         'يمكنك حساب وزن كل كره علي اي من الكواكب باستخدام القانون / ق(نيوتن) = ك (كيلو جرام) X ج(م/ث2)',
         'علي اي كوكب من الكواكب الموجوده يكون وزن الجسم اكبر ؟ \n أ- علي الارض            ب- علي القمر            ج- علي المريخ',
     ]
+
 
     const style: any = {
         transform: `translate(${translateX}px, ${translateY}px)`,
@@ -116,7 +117,7 @@ export default function Test() {
                         <div className='images flex rounded-lg p-3'>
 
                             {plants.map((plant) => (
-                                <Droppables key={plant.id} name={plant.name} className='ball' >
+                                <Droppables key={plant.id} name={plant.name} title={plant.title} content={plant.content} className='ball' >
                                     <Image src={plant.src} alt={plant.name} width={381} height={704} className={`rounded-r-lg`} />
                                 </Droppables>
 
