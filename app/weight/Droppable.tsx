@@ -13,7 +13,7 @@ export default function Droppables(props: any) {
 
   return (
     <section>
-      <div ref={setFirstDroppableRef}>
+      <div ref={setFirstDroppableRef} className={props.className}>
         {props.children}
         <div className="gap-2 flex relative">
             <div className="bg-black text-white rounded-lg p-2 right-2 bottom-2 absolute font-black">{props.title}</div>
