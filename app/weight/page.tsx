@@ -9,7 +9,7 @@ import Draggable from './Draggable';
 
 export default function Test() {
 
-    
+
 
     const [plants, setPlants] = useState([
         { name: 'mars', id: '4', src: '/assets/mars.svg', title: "المريخ", content: "ثابت الجاذبيه = 3.73 متر/ثانيه2" },
@@ -17,9 +17,9 @@ export default function Test() {
         { name: 'earth', id: '6', src: '/assets/earth.svg', title: "الارض", content: "ثابت الجاذبيه = 9.81 متر/ثانيه2" },
     ]);
     const [balls, setBalls] = useState([
-        { name: 'ball1', id: '1', src: '/assets/ball1.png', container: null, x:0, y: 0 },
-        { name: 'ball2', id: '2', src: '/assets/ball2.png', container: null, x:0, y: 0 },
-        { name: 'ball3', id: '3', src: '/assets/ball3.png', container: null, x:0, y: 0 },
+        { name: 'ball1', id: '1', src: '/assets/ball1.png', container: null, x:0, y: 0, activity: null },
+        { name: 'ball2', id: '2', src: '/assets/ball2.png', container: null, x:0, y: 0, activity: null },
+        { name: 'ball3', id: '3', src: '/assets/ball3.png', container: null, x:0, y: 0, activity: null },
     ])
 
     const [contentIndex, setContentIndex] = useState(0);
@@ -29,11 +29,7 @@ export default function Test() {
     const [overBallId, setOverBallId] = useState(null);
     const [translateX, setTranslateX] = useState('0px');
     const [translateY, setTranslateY] = useState('0px');
-    // const [isDrag, setIsDrag] = useState([
-    //     {name: 'mars', item: []},
-    //     {name: 'moon', item: []},
-    //     {name: 'earth', item: []},
-    // ]);
+    const [top, setTop] = useState('10%');
 
     const contentList = [
         'في هذه التجربه سوف نتعرف علي المقصود بالوزن (الثقل).',
@@ -62,18 +58,13 @@ export default function Test() {
     }
 
     const dropBall = () => {
-        setIsDropped(true)
-        setTranslateY('500')
-        console.log(isDropped)
+        setBalls((balls) => balls.map((ball:any) => {
+            if (ball.name === activeBallId) {
+                return { ...ball, container: overBallId, y: '80%' }
+            }
+            return ball
+        }))
     }
-    // console.log(balls)
-
-    // onmousedown = (e: any) => {
-    //     console.log(e)
-    //     const { clientX, clientY , x, y } = e;
-    //     console.log(clientX, clientY, x, y)
-    // }
-
 
     const reload = () => {
         window.location.reload();
@@ -111,8 +102,8 @@ export default function Test() {
                                 <div key={ball.id} className=' bg-[#466fd8] rounded-md flex items-center flex-col pb-1'>
                                     <div className='images  px-[10px] pt-[10px] pb-[8px] flex flex-col items-center relative'>
                                         {!ball.container ?
-                                            <Draggable name={ball.name} className >
-                                                <Image src={ball.src} alt={ball.name} width={94} height={94} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} />
+                                            <Draggable name={ball.name} >
+                                                <Image src={ball.src} alt={ball.name} width={94} height={94} />
                                             </Draggable> : <div className='w-[94px] h-[94px]' ></div>
                                         }
                                         <Image src='/assets/base.png' alt="image1" width={98} height={52} className='absolute top-[58px]' />
@@ -138,17 +129,9 @@ export default function Test() {
                                 <Droppables  key={plant.id} name={plant.name} title={plant.title} content={plant.content} className='ball relative' >
                                     <Image src={plant.src} alt={plant.name} width={381} height={704} className={(plant.name == 'mars' ? `rounded-r-lg` : plant.name == 'earth' ? 'rounded-l-lg' : '')} />
                                     {balls.filter((ball) => ball.container === plant.name).map((ball) => (
-                                        <Draggable key={ball.id} name={ball.name} transform={{x:ball.x, y:ball.y}} >
-                                             <Image src={ball.src} alt={ball.name} width={94} style={
-                                                {
-                                               // position: 'absolute',
-                                               // top: 40,
-                                               // left:( ball.id == '1') ? '75%' : ( ball.id == '2') ? '38%' : '0%',
-                                              //  transform:  isDropped ? `translateY(400px)` : `translate(${translateX}px, ${translateY}px})`,
-                                                }
+                                        <Draggable key={ball.id} name={ball.name} transform={{x:ball.x, y:ball.y}} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} >
+                                            <Image src={ball.src} alt={ball.name} width={94} height={94} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} />
 
-                                            } height={94} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} />
-                                         
                                         </Draggable>
                                     ))}
                                 </Droppables>
@@ -191,27 +174,25 @@ export default function Test() {
         console.log(event)
         const { active, over, delta, activatorEvent   } = event;
         const {clientX, clientY , target: {x, y}} = activatorEvent
-        
-        // console.log(clientX, clientY)
-        // console.log(x, y)
+
+        setTop('10%')
 
         if (!over) return;
-        // setIsDropped(true);
         const activeBallId = active.id;
         const overBallId = over.id;
 
 
+
         if (activeBallId === overBallId) return;
         setOverBallId(overBallId)
-        // setTranslateX(delta.x)
-        // setTranslateY(delta.y)
-        setActiveBallId(null)
+        // setActiveBallId(null)
+        setActiveBallId(activeBallId)
 
         setTest(5)
-        setBalls((balls) => balls.map((ball) => {
+        setBalls((balls) => balls.map((ball:any) => {
             if (ball.name === activeBallId) {
-          
-                return { ...ball, container: overBallId, x: x  , y: y }
+
+                return { ...ball, container: overBallId, x: x  , y: top, activity: ball.name }
             }
             return ball
         }))

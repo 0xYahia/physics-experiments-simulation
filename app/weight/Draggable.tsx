@@ -9,32 +9,34 @@ export default function Draggable(props:any) {
   });
 
   transform = props.trasnform
+  var className = props.className
 
   console.log({props})
 
   var style = {
     // transform:  `translateX(-500px)`,
      position: "relative",
-    
+
     // right:props.trasnform?.Y ?? "0px",
      zIndex: 40,
      opacity: isDragging ? 0 : 1,
      transformOrigin: '0 0',
-   
+
      };
   if(props.transform != null){
-    debugger
+    // debugger
+    className = props.className
     console.log("transofrm exists")
     style.position = "absolute"
-    style.left = `50%`
+    style.left = (props.name == 'ball1') ? `5%` : (props.name == 'ball2') ? `38%` : `70%`
    // style.right = `${props.transform?.y - 200}px`
-    style.top = `10%`
+    style.top = props.transform.y
   }
 
     console.log(style)
 
   return (
-    <div ref={setNodeRef} className={props.className} style={style}  {...listeners} {...attributes} >
+    <div ref={setNodeRef} className={className} style={style}  {...listeners} {...attributes} >
       {props.children}
     </div>
   );
