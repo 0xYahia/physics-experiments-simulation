@@ -17,9 +17,9 @@ export default function Test() {
         { name: 'earth', id: '6', src: '/assets/earth.svg', timer:1, title: "الارض", content: "ثابت الجاذبيه = 9.81 متر/ثانيه2" },
     ]);
     const [balls, setBalls] = useState([
-        { name: 'ball1', id: '1', src: '/assets/ball1.png', container: null, x:0, y: 0, activity: null, weight: 1 },
+        { name: 'ball1', id: '1', src: '/assets/ball1.png', container: null, x:0, y: 0, activity: null, weight: 3 },
         { name: 'ball2', id: '2', src: '/assets/ball2.png', container: null, x:0, y: 0, activity: null, weight: 2 },
-        { name: 'ball3', id: '3', src: '/assets/ball3.png', container: null, x:0, y: 0, activity: null, weight: 3 },
+        { name: 'ball3', id: '3', src: '/assets/ball3.png', container: null, x:0, y: 0, activity: null, weight: 1 },
     ])
 
     const [contentIndex, setContentIndex] = useState(0);
@@ -135,7 +135,7 @@ export default function Test() {
                                         if (ball.name === ball.activity) {
                                             myOverBallId = ball.container
                                         }
-                                        return (<Draggable key={ball.id} name={ball.name} transform={{x:ball.x, y:ball.y}} transation={myOverBallId ?`top ${plant.timer * ball.weight}s ease-in-out`: ''} className={`z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} >
+                                        return (<Draggable key={ball.id} name={ball.name} transform={{x:ball.x, y:ball.y}} transition={myOverBallId ?`top ${plant.timer * ball.weight}s ease-in-out`: ''} className={`z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} >
                                             <Image src={ball.src} alt={ball.name} width={94} height={94} />
 
                                         </Draggable>)

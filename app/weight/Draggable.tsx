@@ -10,6 +10,7 @@ export default function Draggable(props:any) {
 
   transform = props.trasnform
   var className = props.className
+  var transition = props.transition
 
   console.log({props})
 
@@ -26,10 +27,11 @@ export default function Draggable(props:any) {
   if(props.transform != null){
     // debugger
     className = props.className
+
     console.log("transofrm exists")
     style.position = "absolute"
     style.left = (props.name == 'ball1') ? `5%` : (props.name == 'ball2') ? `38%` : `70%`
-    style.transition = props.transition
+    style.transition = transition
    // style.right = `${props.transform?.y - 200}px`
     style.top = props.transform.y
   }
