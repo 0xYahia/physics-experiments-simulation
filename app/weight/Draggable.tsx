@@ -11,7 +11,6 @@ export default function Draggable(props:any) {
     transform: CSS.Translate.toString(transform),
     zIndex: 40,
     opacity: isDragging ? 0 : 1,
-    transformOrigin: '0 0',
     };
 
   return (
