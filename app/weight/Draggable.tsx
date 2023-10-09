@@ -14,7 +14,7 @@ export default function Draggable(props:any) {
 
   console.log({props})
 
-  var style = {
+  var style: any = {
     // transform:  `translateX(-500px)`,
      position: "relative",
 
