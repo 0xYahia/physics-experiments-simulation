@@ -29,7 +29,6 @@ export default function Draggable(props:any) {
     style.left = `50%`
    // style.right = `${props.transform?.y - 200}px`
     style.top = `10%`
-    //style.po
   }
 
     console.log(style)
