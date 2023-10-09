@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
+:root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-} */
+  --ball1:
+}
 
 /* @media (prefers-color-scheme: dark) {
   :root {
@@ -27,13 +28,13 @@ body {
 }
 
 .drop-animation-mars {
-  transition: top 3s ease-in-out; /* Adjust the duration and timing function as needed */
+  transition: top 3s ease-in-out;
 }
 .drop-animation-moon {
-  transition: top 5s ease-in-out; /* Adjust the duration and timing function as needed */
+  transition: top 5s ease-in-out;
 }
 .drop-animation-earth {
-  transition: top 1.5s ease-in-out; /* Adjust the duration and timing function as needed */
+  transition: top 1.5s ease-in-out;
 }
 
 .transition {

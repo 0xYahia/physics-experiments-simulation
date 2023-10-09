@@ -29,6 +29,7 @@ export default function Draggable(props:any) {
     console.log("transofrm exists")
     style.position = "absolute"
     style.left = (props.name == 'ball1') ? `5%` : (props.name == 'ball2') ? `38%` : `70%`
+    style.transition = props.transition
    // style.right = `${props.transform?.y - 200}px`
     style.top = props.transform.y
   }

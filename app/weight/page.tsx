@@ -12,14 +12,14 @@ export default function Test() {
 
 
     const [plants, setPlants] = useState([
-        { name: 'mars', id: '4', src: '/assets/mars.svg', title: "المريخ", content: "ثابت الجاذبيه = 3.73 متر/ثانيه2" },
-        { name: 'moon', id: '5', src: '/assets/moon.svg', title: "القمر", content: "ثابت الجاذبيه = 1.62 متر/ثانيه2  " },
-        { name: 'earth', id: '6', src: '/assets/earth.svg', title: "الارض", content: "ثابت الجاذبيه = 9.81 متر/ثانيه2" },
+        { name: 'mars', id: '4', src: '/assets/mars.svg', timer: 2, title: "المريخ", content: "ثابت الجاذبيه = 3.73 متر/ثانيه2" },
+        { name: 'moon', id: '5', src: '/assets/moon.svg', timer: 3, title: "القمر", content: "ثابت الجاذبيه = 1.62 متر/ثانيه2  " },
+        { name: 'earth', id: '6', src: '/assets/earth.svg', timer:1, title: "الارض", content: "ثابت الجاذبيه = 9.81 متر/ثانيه2" },
     ]);
     const [balls, setBalls] = useState([
-        { name: 'ball1', id: '1', src: '/assets/ball1.png', container: null, x:0, y: 0, activity: null },
-        { name: 'ball2', id: '2', src: '/assets/ball2.png', container: null, x:0, y: 0, activity: null },
-        { name: 'ball3', id: '3', src: '/assets/ball3.png', container: null, x:0, y: 0, activity: null },
+        { name: 'ball1', id: '1', src: '/assets/ball1.png', container: null, x:0, y: 0, activity: null, weight: 1 },
+        { name: 'ball2', id: '2', src: '/assets/ball2.png', container: null, x:0, y: 0, activity: null, weight: 2 },
+        { name: 'ball3', id: '3', src: '/assets/ball3.png', container: null, x:0, y: 0, activity: null, weight: 3 },
     ])
 
     const [contentIndex, setContentIndex] = useState(0);
@@ -58,9 +58,10 @@ export default function Test() {
     }
 
     const dropBall = () => {
+        console.log(balls)
         setBalls((balls) => balls.map((ball:any) => {
-            if (ball.name === activeBallId) {
-                return { ...ball, container: overBallId, y: '80%' }
+            if (ball.name === ball.activity) {
+                return { ...ball, y: '80%' }
             }
             return ball
         }))
@@ -128,12 +129,17 @@ export default function Test() {
                             {plants.map((plant) => (
                                 <Droppables  key={plant.id} name={plant.name} title={plant.title} content={plant.content} className='ball relative' >
                                     <Image src={plant.src} alt={plant.name} width={381} height={704} className={(plant.name == 'mars' ? `rounded-r-lg` : plant.name == 'earth' ? 'rounded-l-lg' : '')} />
-                                    {balls.filter((ball) => ball.container === plant.name).map((ball) => (
-                                        <Draggable key={ball.id} name={ball.name} transform={{x:ball.x, y:ball.y}} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} >
-                                            <Image src={ball.src} alt={ball.name} width={94} height={94} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} />
+                                    {balls.filter((ball) => ball.container === plant.name).map((ball) => {
+                                        var myOverBallId;
+                                        console.log('ssss')
+                                        if (ball.name === ball.activity) {
+                                            myOverBallId = ball.container
+                                        }
+                                        return (<Draggable key={ball.id} name={ball.name} transform={{x:ball.x, y:ball.y}} transation={myOverBallId ?`top ${plant.timer * ball.weight}s ease-in-out`: ''} className={`z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} >
+                                            <Image src={ball.src} alt={ball.name} width={94} height={94} />
 
-                                        </Draggable>
-                                    ))}
+                                        </Draggable>)
+                                    })}
                                 </Droppables>
 
                             ))}
