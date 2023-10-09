@@ -40,7 +40,6 @@ export default function Test() {
         'علي اي كوكب من الكواكب الموجوده يكون وزن الجسم اكبر ؟ \n أ- علي الارض            ب- علي القمر            ج- علي المريخ',
     ]
 
-    console.log(balls)
 
 
     const style: any = {
@@ -64,7 +63,13 @@ export default function Test() {
         setTranslateY('500')
         console.log(isDropped)
     }
-    console.log(balls)
+    // console.log(balls)
+
+    // onmousedown = (e: any) => {
+    //     console.log(e)
+    //     const { clientX, clientY , x, y } = e;
+    //     console.log(clientX, clientY, x, y)
+    // }
 
 
     const reload = () => {
@@ -115,7 +120,7 @@ export default function Test() {
                         </div>
                         <div className='flex flex-col items-center gap-6'>
                             <hr className='bg-[##ffffff54] w-[110px] h-[1px]' />
-                            <button onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
+                            <button  onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
                             {/* <button onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button> */}
                             <div  className='p-2 mt-2 w-[50px] h-[50px] rounded-full bg-[#FBAC14] cursor-pointer'>
                                 <Image onClick={reload} src='/assets/refresh.png' alt="image1" width={32} height={32} />
@@ -127,18 +132,18 @@ export default function Test() {
                         <div className='images flex rounded-lg p-3'>
 
                             {plants.map((plant) => (
-                                <Droppables key={plant.id} name={plant.name} title={plant.title} content={plant.content} className='ball relative' >
+                                <Droppables  key={plant.id} name={plant.name} title={plant.title} content={plant.content} className='ball relative' >
                                     <Image src={plant.src} alt={plant.name} width={381} height={704} className={(plant.name == 'mars' ? `rounded-r-lg` : plant.name == 'earth' ? 'rounded-l-lg' : '')} />
                                     {balls.filter((ball) => ball.container === plant.name).map((ball) => (
-                                        <Draggable key={ball.id} name={ball.name}>
+                                        <Draggable key={ball.id} name={ball.name} >
                                             <Image src={ball.src} alt={ball.name} width={94} style={
                                                 {
                                                 position: 'absolute',
                                                 top: 40,
-                                                left: '50%',
-                                                // transform: `translate(${ball.x}px, ${ball.y}px)`,
-                                                transform: isDropped ? `translateY(400px)` : `translateY(-50%)`,
+                                                left:( ball.id == '1') ? '75%' : ( ball.id == '2') ? '38%' : '0%',
+                                                transform:  isDropped ? `translateY(400px)` : `translate(${translateX}px, ${translateY}px})`,
                                                 }
+
                                             } height={94} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} />
                                         </Draggable>
                                     ))}
@@ -150,7 +155,7 @@ export default function Test() {
                                     balls.map((ball) => (
                                         activeBallId === ball.name ? (
                                             <div key={ball.id} >
-                                                <Image src={ball.src} alt={ball.name} width={94} height={94} className='z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110' />
+                                                <Image  src={ball.src} alt={ball.name} width={94} height={94} className='z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110' />
                                             </div>
                                         ) : null
                                     ))
@@ -182,7 +187,8 @@ export default function Test() {
         console.log(event)
         const { active, over, delta, activatorEvent } = event;
         const {clientX, clientY , target: {x, y}} = activatorEvent
-        console.log(x, y)
+        // console.log(clientX, clientY)
+        // console.log(x, y)
 
         if (!over) return;
         // setIsDropped(true);
@@ -192,8 +198,8 @@ export default function Test() {
 
         if (activeBallId === overBallId) return;
         setOverBallId(overBallId)
-        setTranslateX(delta.x)
-        setTranslateY(delta.y)
+        // setTranslateX(delta.x)
+        // setTranslateY(delta.y)
         setActiveBallId(null)
 
         setBalls((balls) => balls.map((ball) => {
@@ -203,6 +209,7 @@ export default function Test() {
             return ball
         }))
     }
+
     function onDragCancel (event: any) {
         setActiveBallId(null)
     }
