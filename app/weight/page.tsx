@@ -21,7 +21,7 @@ export default function Test() {
     ])
 
     const [contentIndex, setContentIndex] = useState(0);
-    // const [isDropped, setIsDropped] = useState(false);
+    const [isDropped, setIsDropped] = useState(false);
     const [activeBallId, setActiveBallId] = useState(null);
     const [overBallId, setOverBallId] = useState(null);
     const [translateX, setTranslateX] = useState('0px');
@@ -59,16 +59,13 @@ export default function Test() {
         }
     }
 
-    // const dropBall = () => {
-    //     // if (!isDropped) return;
-    //     console.log('dropBall')
-    //     setTranslateY(`${translateY + 300}`)
-    //     setTimeout(() => {
-    //         console.log(translateX)
-    //     }, 0);
-    //     // setIsDropped(false);
-    // }
+    const dropBall = () => {
+        setIsDropped(true)
+        setTranslateY('500')
+        console.log(isDropped)
+    }
     console.log(balls)
+
 
     const reload = () => {
         window.location.reload();
@@ -118,10 +115,9 @@ export default function Test() {
                         </div>
                         <div className='flex flex-col items-center gap-6'>
                             <hr className='bg-[##ffffff54] w-[110px] h-[1px]' />
-                            <button className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
-                            {/* <Image onClick={dropBall} src='/assets/playDefault.png' alt="image1" width={110} height={50} className='cursor-pointer hover:hidden ' /> */}
-                            {/* <Image onClick={dropBall} src='/assets/playHover.png' alt="image1" width={110} height={50} className='cursor-pointer hover:inline-block' /> */}
-                            <div className='p-2 mt-2 w-[50px] h-[50px] rounded-full bg-[#FBAC14] cursor-pointer'>
+                            <button onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
+                            {/* <button onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button> */}
+                            <div  className='p-2 mt-2 w-[50px] h-[50px] rounded-full bg-[#FBAC14] cursor-pointer'>
                                 <Image onClick={reload} src='/assets/refresh.png' alt="image1" width={32} height={32} />
                             </div>
                         </div>
@@ -141,12 +137,11 @@ export default function Test() {
                                                 top: 40,
                                                 left: '50%',
                                                 // transform: `translate(${ball.x}px, ${ball.y}px)`,
-                                                transform: `translateY(-50%)`,
+                                                transform: isDropped ? `translateY(400px)` : `translateY(-50%)`,
                                                 }
                                             } height={94} className={`drop-animation-${overBallId} z-10 transition-all duration-75 ease-linear cursor-pointer hover:translate-110 hover:scale-110`} />
                                         </Draggable>
                                     ))}
-                                    {/* <Draggable  name={'mars'} /> */}
                                 </Droppables>
 
                             ))}
@@ -162,15 +157,6 @@ export default function Test() {
                                 ) : null}
                             </DragOverlay>
                         </div>
-                        {/* <div className="content flex justify-start relative items-center px-10 py-8  border-t-[1px] border-[#CCD2D9]">
-                            {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer absolute right-0 top-2/4' onClick={handleNextClick} /> :
-                                <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer absolute right-0 top-2/4' />
-                            }
-                            <p className='text-[22px] w-5/6 font-medium text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
-                            {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer absolute left-0 top-2/4' onClick={handlePrevClick} /> :
-                                <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer absolute left-0 top-2/4' />
-                            }
-                        </div> */}
                         <div className="content h-[14%] flex justify-between items-center px-10 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
                             {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handleNextClick} /> :
                                 <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer' />
@@ -197,13 +183,11 @@ export default function Test() {
         const { active, over, delta, activatorEvent } = event;
         const {clientX, clientY , target: {x, y}} = activatorEvent
         console.log(x, y)
-        // console.log(clientX, clientY)
 
         if (!over) return;
         // setIsDropped(true);
         const activeBallId = active.id;
         const overBallId = over.id;
-        // console.log(activeBallId, overBallId, delta)
 
 
         if (activeBallId === overBallId) return;

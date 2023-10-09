@@ -10,7 +10,7 @@ export default function Draggable(props:any) {
   const style = {
     transform: CSS.Translate.toString(transform),
     zIndex: 40,
-    // opacity: isDragging ? 0 : 1,
+    opacity: isDragging ? 0 : 1,
     };
 
   return (
