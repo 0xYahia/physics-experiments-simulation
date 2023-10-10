@@ -119,13 +119,13 @@ export default function Test() {
                         <div className='flex flex-col items-center gap-6'>
                             <hr className='bg-[##ffffff54] w-[110px] h-[1px]' />
                             {/* <button  onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button> */}
-                            <div onMouseLeave={() => setIsLeavePlay(true)} onMouseOver={() => setIsLeavePlay(false)} className='transition-all ' >
+                            <div onMouseLeave={() => setIsLeavePlay(true)} onMouseOver={() => setIsLeavePlay(false)} className='custom-transition' >
                                 {
                                    isLeavePlay ?  <Image onClick={dropBall}  src='/assets/playDefault.png' alt='play' width={110} height={50} className='cursor-pointer' /> :
                                    <Image onClick={dropBall}  src='/assets/playHover.png' alt='play' width={110} height={50} className='cursor-pointer' />
                                 }
                             </div>
-                            <div onMouseLeave={() =>setIsLeaveRefresh(true)} onMouseOver={() =>setIsLeaveRefresh(false)} className='transition-all ' >
+                            <div onMouseLeave={() =>setIsLeaveRefresh(true)} onMouseOver={() =>setIsLeaveRefresh(false)} className='custom-transition' >
                                 {
                                     isLeaveRefresh ? <Image onClick={reload} src='/assets/refreshDefault.png' alt="image1" width={50} height={50} /> :
                                     <Image onClick={reload} src='/assets/refreshHover.png' alt="image1" width={50} height={50}  className='cursor-pointer'/>

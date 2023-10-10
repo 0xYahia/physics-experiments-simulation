@@ -37,10 +37,6 @@ body {
   transition: top 1.5s ease-in-out;
 }
 
-.transition {
-  transition: top .3s ease-in-out;
-}
-
-.p2 {
-  white-space: nowrap;
+.custom-transition {
+  transition: all 15s ease-in-out;
 }
