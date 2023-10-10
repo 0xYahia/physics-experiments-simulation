@@ -40,3 +40,7 @@ body {
 .transition {
   transition: top .3s ease-in-out;
 }
+
+.p2 {
+  white-space: nowrap;
+}
