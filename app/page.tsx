@@ -24,7 +24,7 @@ export default function Test(){
                     <Image src='/assets/test1.svg' alt="image1" width={363} height={363} className='w-full rounded-t-lg' />
                     <div className='bg-white p-6 flex items-center gap-[18px] rounded-b-lg	'>
                         <Image src='/assets/test1.png' alt="image1" width={34} height={34}/>
-                        <p className="text-[24px] mt-2 text-black font-medium">تجربة الوزن والثقل</p>
+                        <p className="text-[24px] mt-2 text-black font-bold">تجربة الوزن والثقل</p>
                     </div>
                 </div>
             </Link>
@@ -34,7 +34,7 @@ export default function Test(){
                 </div>
                 <div className='bg-white p-6 flex items-center gap-[18px] rounded-b-lg	'>
                     <div className='w-[35px] h-[35px] rounded-full bg-[#EDEDED]'></div>
-                    <p className="text-[24px] mt-2 text-black font-medium p2">تجربة العدسات المقعره والمحدبه</p>
+                    <p className="text-[24px] mt-2 text-black font-bold p2">تجربة العدسات المقعره والمحدبه</p>
                 </div>
             </div>
             <div className='w-[363px] flex justify-center flex-col rounded-2xl'>
@@ -43,7 +43,7 @@ export default function Test(){
                 </div>
                 <div className='bg-white p-6 flex items-center gap-[18px] rounded-b-lg'>
                     <div className='w-[35px] h-[35px] rounded-full bg-[#EDEDED]'></div>
-                    <p className="text-[24px] mt-2 text-black font-medium">تجربة مكونات الحركه</p>
+                    <p className="text-[24px] mt-2 text-black font-bold">تجربة مكونات الحركه</p>
                 </div>
             </div>
         </div>

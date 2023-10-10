@@ -67,6 +67,9 @@ export default function Test() {
         }))
     }
 
+    const [isLeavePlay, setIsLeavePlay] = useState(true)
+    const [isLeaveRefresh, setIsLeaveRefresh] = useState(true)
+
     const reload = () => {
         window.location.reload();
     }
@@ -115,10 +118,19 @@ export default function Test() {
                         </div>
                         <div className='flex flex-col items-center gap-6'>
                             <hr className='bg-[##ffffff54] w-[110px] h-[1px]' />
-                            <button  onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button>
-                            <div  className='p-2 mt-2 w-[50px] h-[50px] rounded-full bg-[#FBAC14] cursor-pointer'>
-                                <Image onClick={reload} src='/assets/refresh.png' alt="image1" width={32} height={32} />
+                            {/* <button  onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button> */}
+                            <div onMouseLeave={() => setIsLeavePlay(true)} onMouseOver={() => setIsLeavePlay(false)} className='transition-all ' >
+                                {
+                                   isLeavePlay ?  <Image onClick={dropBall}  src='/assets/playDefault.png' alt='play' width={110} height={50} className='cursor-pointer' /> :
+                                   <Image onClick={dropBall}  src='/assets/playHover.png' alt='play' width={110} height={50} className='cursor-pointer' />
+                                }
                             </div>
+                            <div onMouseLeave={() =>setIsLeaveRefresh(true)} onMouseOver={() =>setIsLeaveRefresh(false)} className='transition-all ' >
+                                {
+                                    isLeaveRefresh ? <Image onClick={reload} src='/assets/refreshDefault.png' alt="image1" width={50} height={50} /> :
+                                    <Image onClick={reload} src='/assets/refreshHover.png' alt="image1" width={50} height={50}  className='cursor-pointer'/>
+                                }
+                                </div>
                         </div>
                     </div>
                     {/* Plants */}
@@ -158,10 +170,10 @@ export default function Test() {
                             {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handleNextClick} /> :
                                 <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer' />
                             }
-                            <p className='text-[22px] font-medium text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
-                            {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handlePrevClick} /> :
-                                <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer' />
-                            }
+                            <p className='text-[22px] font-bold text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
+                                {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handlePrevClick} /> :
+                                    <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer' />
+                                }
                         </div>
                     </div>
                 </div>
