@@ -69,6 +69,7 @@ export default function Test() {
 
     const [isLeavePlay, setIsLeavePlay] = useState(true)
     const [isLeaveRefresh, setIsLeaveRefresh] = useState(true)
+    const [isLeaveBack, setIsLeaveBack] = useState(true)
 
     const reload = () => {
         window.location.reload();
@@ -85,14 +86,19 @@ export default function Test() {
                     <div className='headerLeft flex items-center'>
                         <div className='flex items-center px-3 py-2 gap-4'>
                             <Image src='/assets/forward.png' alt="image1" width={24} height={24} />
-                            <p className='text-white font-bold text-[18px]'>تجربة الوزن او الثقل</p>
+                            <p className='text-white font-extrabold text-[18px]'>تجربة الوزن او الثقل</p>
                             <Image src='/assets/backward.png' alt="image1" width={24} height={24} />
                         </div>
                         <hr className='bg-[##ffffff54] w-[32px] h-[1px] rotate-90' />
                         <div className='pr-4 pl-2'>
-                            <Link href={'/'} className='flex items-center  gap-2'>
-                                <span className='text-white font-bold text-[18px]'>رجوع</span>
-                                <Image src='/assets/backBtn.png' alt="image1" width={34} height={34} />
+                            <Link href={'/'} className='flex items-center  gap-2' onMouseLeave={() => setIsLeaveBack(true)} onMouseOver={() => setIsLeaveBack(false)}>
+                                {/* <span className='text-white font-bold text-[18px]'>رجوع</span>
+                                <Image src='/assets/backBtn.png' alt="image1" width={34} height={34} /> */}
+                                {
+                                    isLeaveBack ? <Image src='/assets/backDefault.png' alt="image1" width={98} height={98} /> :
+                                    <Image src='/assets/backHover.png' alt="image1" width={98} height={98} />
+                                }
+
                             </Link>
                         </div>
                     </div>
