@@ -34,7 +34,7 @@ export default function Test(){
                 </div>
                 <div className='bg-white p-6 flex items-center gap-[18px] rounded-b-lg	'>
                     <div className='w-[35px] h-[35px] rounded-full bg-[#EDEDED]'></div>
-                    <p className="text-[24px] mt-2 text-black font-bold p2">تجربة العدسات المقعره والمحدبه</p>
+                    <p className="text-[24px] mt-2 text-black font-bold p2">تجربة العدسات المقعره </p>
                 </div>
             </div>
             <div className='w-[363px] flex justify-center flex-col rounded-2xl'>
