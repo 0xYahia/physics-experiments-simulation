@@ -100,7 +100,7 @@ export default function Test() {
                 {/* Content */}
                 <div className='content mt-20 flex justify-center gap-6'>
                     {/* Sidebar */}
-                    <div className='mainBalls flex flex-col px-2 pt-2 pb-8 items-center gap-[160px] rounded-lg bg-[#5484FF] w-[138px]'>
+                    <div className='mainBalls flex flex-col px-2 pt-2 pb-8 items-center gap-[110px] rounded-lg bg-[#5484FF] w-[138px]'>
                         <div className='balls flex flex-col gap-1 w-full'>
                             {balls.map((ball) => (
                                 <div key={ball.id} className=' bg-[#466fd8] rounded-md flex items-center flex-col pb-1'>
@@ -116,9 +116,8 @@ export default function Test() {
                                 </div>
                             ))}
                         </div>
-                        <div className='flex flex-col items-center gap-6'>
+                        <div className='flex flex-col items-center gap-10 mt-[8px]'>
                             <hr className='bg-[##ffffff54] w-[110px] h-[1px]' />
-                            {/* <button  onClick={dropBall} className='bg-[#FBAC14] hover:border-2  w-[100px] h-[40px] rounded-lg text-[18px] text-white font-black'>تشغيل</button> */}
                             <div onMouseLeave={() => setIsLeavePlay(true)} onMouseOver={() => setIsLeavePlay(false)} className='custom-transition' >
                                 {
                                    isLeavePlay ?  <Image onClick={dropBall}  src='/assets/playDefault.png' alt='play' width={110} height={50} className='cursor-pointer' /> :
@@ -134,8 +133,8 @@ export default function Test() {
                         </div>
                     </div>
                     {/* Plants */}
-                    <div className='border-[1px] border-[#CCD2D9] rounded-lg'>
-                        <div className='images flex rounded-lg p-3'>
+                    <div className='border-[1px] bg-white border-[#CCD2D9] rounded-2xl'>
+                        <div className='images flex rounded-l p-3'>
 
                             {plants.map((plant) => (
                                 <Droppables  key={plant.id} name={plant.name} title={plant.title} content={plant.content} className='ball relative' >
@@ -166,13 +165,13 @@ export default function Test() {
                                 ) : null}
                             </DragOverlay>
                         </div>
-                        <div className="content h-[14%] flex justify-between items-center px-10 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
-                            {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handleNextClick} /> :
-                                <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer' />
+                        <div className="content  h-[14%] flex justify-between items-center px-5 py-8 gap-10 border-t-[1px] border-[#CCD2D9]">
+                            {contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' onClick={handleNextClick} /> :
+                                <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' />
                             }
-                            <p className='text-[22px] font-bold text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
-                                {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer' onClick={handlePrevClick} /> :
-                                    <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer' />
+                            <p className='text-[22px] flex justify-center items-center h-[60px] font-bold text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
+                                {contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' onClick={handlePrevClick} /> :
+                                    <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' />
                                 }
                         </div>
                     </div>
