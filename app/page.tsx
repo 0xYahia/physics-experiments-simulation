@@ -10,7 +10,7 @@ export default function Test(){
     return (
     <div className='container px-6' >
         {/* Header */}
-        <div className="header flex justify-between items-center fixed z-50 top-0 left-0 px-6 text-white w-full h-[56px] py-2 bg-[#5484FF]">
+        <div className="header flex justify-start gap-2 items-center fixed z-50 top-0 left-0 px-6 text-white w-full h-[56px] py-2 bg-[#5484FF]">
             <Image src='/assets/image1.png' alt="image1" width={40} height={40} />
         <div className='flex items-center font-bold text-[18px] mt-[5px]'>محاكاة التجارب الفيزيائيه</div>
         </div>
