@@ -12,13 +12,10 @@ export default function Draggable(props:any) {
   var className = props.className
   var transition = props.transition
 
-  console.log({props})
 
   var style: any = {
-    // transform:  `translateX(-500px)`,
      position: "relative",
 
-    // right:props.trasnform?.Y ?? "0px",
      zIndex: 40,
      opacity: isDragging ? 0 : 1,
      transformOrigin: '0 0',
@@ -32,8 +29,6 @@ export default function Draggable(props:any) {
     style.transition = transition
     style.top = props.transform.y
   }
-
-    console.log(style)
 
   return (
     <div ref={setNodeRef} className={className} style={style}  {...listeners} {...attributes} >

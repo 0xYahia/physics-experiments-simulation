@@ -24,7 +24,6 @@ export default function Test() {
 
     const [contentIndex, setContentIndex] = useState(0);
     const [test, setTest] = useState(0);
-    const [isDropped, setIsDropped] = useState(false);
     const [activeBallId, setActiveBallId] = useState(null);
     const [overBallId, setOverBallId] = useState(null);
     const [translateX, setTranslateX] = useState('0px');
@@ -58,7 +57,6 @@ export default function Test() {
     }
 
     const dropBall = () => {
-        console.log(balls)
         setBalls((balls) => balls.map((ball:any) => {
             if (ball.name === ball.activity) {
                 return { ...ball, y: '80%' }
@@ -92,8 +90,6 @@ export default function Test() {
                         <hr className='bg-[##ffffff54] w-[32px] h-[1px] rotate-90' />
                         <div className='pr-4 pl-2'>
                             <Link href={'/'} className='flex items-center  gap-2' onMouseLeave={() => setIsLeaveBack(true)} onMouseOver={() => setIsLeaveBack(false)}>
-                                {/* <span className='text-white font-bold text-[18px]'>رجوع</span>
-                                <Image src='/assets/backBtn.png' alt="image1" width={34} height={34} /> */}
                                 {
                                     isLeaveBack ? <Image src='/assets/backDefault.png' alt="image1" width={98} height={98} /> :
                                     <Image src='/assets/backHover.png' alt="image1" width={98} height={98} />
@@ -147,7 +143,6 @@ export default function Test() {
                                     <Image src={plant.src} alt={plant.name} width={381} height={704} className={(plant.name == 'mars' ? `rounded-r-lg` : plant.name == 'earth' ? 'rounded-l-lg' : '')} />
                                     {balls.filter((ball) => ball.container === plant.name).map((ball) => {
                                         var myOverBallId;
-                                        console.log('ssss')
                                         if (ball.name === ball.activity) {
                                             myOverBallId = ball.container
                                         }
@@ -193,9 +188,8 @@ export default function Test() {
     }
 
     function onDragEnd(event: any ) {
-        console.log(event)
         const { active, over, delta, activatorEvent   } = event;
-        const {clientX, clientY , target: {x, y}} = activatorEvent
+        const {target: {x, y}} = activatorEvent
 
         setTop('10%')
 
