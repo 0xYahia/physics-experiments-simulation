@@ -33,6 +33,22 @@ export default function Movement() {
         </div>
       </div>
       {/* Content */}
+      <div className="flex justify-center items-center">
+        {/* <Image src='/assets/movement.png' alt="image1" width={1200} height={1200} /> */}
+        <div className="mt-20 bg-[url('/assets/movement.png')] w-[1440px] h-[680px] bg-no-repeat bg-cover bg-center relative ">
+          <div className="mr-5 mt-5 flex flex-col gap-3">
+            <p className="mr-1 font-bold">قوة الدفع</p>
+            <div className="bg-white border rounded-lg flex justify-between w-40 px-3 py-1 ">
+              <span className="font-black">10 نيوتن</span>
+              <div className="flex gap-4">
+                <button className="text-4xl font-black text-[#FF5454]" >-</button>
+                <button className="text-4xl font-black text-[#39B200]">+</button>
+              </div>
+            </div>
+          </div>
+          <Image className="absolute left-6 bottom-12" src='/assets/car.png' alt="image1" width={280} height={179} />
+        </div>
+      </div>
     </>
   )
 }
