@@ -14,10 +14,10 @@ export default function Movement() {
     'أختر قوة مناسبة من مربع اختيار القيم وليكن مقدارها 10 نيوتن لتحريك السيارة.',
     'اضعغط علي مفتاح التشغيل والايقاف لبدء التجربة',
     'اضغط على مفتاح التشغيل الإيقاف ﻹيقاف التجربة عندما يصل المنحني إلى نهايته.',
-    'لاحظ شكل البياني المرسوم. \n  (وهو عباة عن خط مستقيم يميل نحو الأعلي)',
-    'احسب ميل الخط المستقيم من العلاقة: \n  ميل الخط المستقيم = (التغير في السرعة) / (التغير في الزمن)',
+    'لاحظ شكل البياني المرسوم. \n(وهو عباة عن خط مستقيم يميل نحو الأعلي)',
+    'احسب ميل الخط المستقيم من العلاقة: \nميل الخط المستقيم = (التغير في السرعة) / (التغير في الزمن)',
     'قارن النتيجه التي حصلت عليها مع مربع اختيار القيم الخاص بالتسارع.',
-    'ميل الخط المستقيم = (18 - 0 ) / (3.6 - 0) \n ميل الخط المستقيم (التسارع) = = 5 م/ث²',
+    'ميل الخط المستقيم = (18 - 0 ) / (3.6 - 0) \nميل الخط المستقيم (التسارع) = = 5 م/ث²',
 ]
 
 const [balls, setBalls] = useState([
@@ -94,7 +94,7 @@ const reload = () => {
           <Image className="absolute left-6 bottom-12" src='/assets/car.png' alt="image1" width={280} height={179} />
         </div>
         <div className="flex items-center w-full bg-white">
-          <div className='flex items-center gap-10 mt-[8px] w-1/4'>
+          <div className='flex items-center gap-10 mt-[8px] w-1/4 justify-center'>
               <div onMouseLeave={() => setIsLeavePlay(true)} onMouseOver={() => setIsLeavePlay(false)} className='custom-transition' >
                   {
                       isLeavePlay ? <Image onClick={dropBall} src='/assets/playDefault.png' alt='play' width={110} height={50} className='cursor-pointer mt-3' /> :
@@ -108,7 +108,7 @@ const reload = () => {
                   }
               </div>
           </div>
-          <hr />
+          <hr className="h-16 w-[2px] ml-11 bg-[#CCD2D9]" />
           <div className="content w-3/4 h-[14%] flex justify-between items-center px-5 py-8 gap-10">
               {
                 contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' onClick={handleNextClick} /> :
