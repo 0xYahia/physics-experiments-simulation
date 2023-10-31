@@ -31,7 +31,7 @@ export default function Test(){
             <Link href={'./movement'}>
                 <div className='w-[363px] flex justify-center flex-col rounded-2xl'>
                     <div className='flex justify-center'>
-                        <Image src='/assets/test2.jpeg' alt="image1" width={363} height={363} className='w-full rounded-t-lg' />
+                        <Image src='/assets/movementCover.png' alt="image1" width={363} height={363} className='w-full rounded-t-lg' />
                     </div>
                     <div className='bg-white p-6 flex items-center gap-[18px] rounded-b-lg	'>
                         <div className='w-[35px] h-[35px] rounded-full bg-[#EDEDED]'></div>

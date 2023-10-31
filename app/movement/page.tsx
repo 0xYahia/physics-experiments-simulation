@@ -5,7 +5,51 @@ import { useState } from "react"
 
 export default function Movement() {
   const [isLeaveBack, setIsLeaveBack] = useState(true)
-  console.log('yahia')
+  const [contentIndex, setContentIndex] = useState(0);
+  const [isLeavePlay, setIsLeavePlay] = useState(true)
+  const [isLeaveRefresh, setIsLeaveRefresh] = useState(true)
+
+  const contentList = [
+    'في خلال هذه التجربه سوف نتعرف علي مكونات الحركه.',
+    'أختر قوة مناسبة من مربع اختيار القيم وليكن مقدارها 10 نيوتن لتحريك السيارة.',
+    'اضعغط علي مفتاح التشغيل والايقاف لبدء التجربة',
+    'اضغط على مفتاح التشغيل الإيقاف ﻹيقاف التجربة عندما يصل المنحني إلى نهايته.',
+    'لاحظ شكل البياني المرسوم. \n  (وهو عباة عن خط مستقيم يميل نحو الأعلي)',
+    'احسب ميل الخط المستقيم من العلاقة: \n  ميل الخط المستقيم = (التغير في السرعة) / (التغير في الزمن)',
+    'قارن النتيجه التي حصلت عليها مع مربع اختيار القيم الخاص بالتسارع.',
+    'ميل الخط المستقيم = (18 - 0 ) / (3.6 - 0) \n ميل الخط المستقيم (التسارع) = = 5 م/ث²',
+]
+
+const [balls, setBalls] = useState([
+  { name: 'ball1', id: '1', src: '/assets/ball1.png', container: null, x:0, y: 0, activity: null, weight: 3 },
+])
+
+const handleNextClick = () => {
+  if (contentIndex < contentList.length - 1) {
+      setContentIndex(contentIndex + 1)
+  }
+}
+
+const handlePrevClick = () => {
+  if (contentIndex > 0) {
+      setContentIndex(contentIndex - 1)
+  }
+}
+
+const dropBall = () => {
+  setBalls((balls) => balls.map((ball: any) => {
+      if (ball.name === ball.activity) {
+          return { ...ball, y: '80%' }
+      }
+      return ball
+  }))
+}
+
+const reload = () => {
+  window.location.reload();
+}
+
+
   return (
     <>
     {/* Header */}
@@ -32,13 +76,14 @@ export default function Movement() {
           </div>
         </div>
       </div>
+
       {/* Content */}
-      <div className="flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
         {/* <Image src='/assets/movement.png' alt="image1" width={1200} height={1200} /> */}
         <div className="mt-20 bg-[url('/assets/movement.png')] w-[1440px] h-[680px] bg-no-repeat bg-cover bg-center relative ">
           <div className="mr-5 mt-5 flex flex-col gap-3">
             <p className="mr-1 font-bold">قوة الدفع</p>
-            <div className="bg-white border rounded-lg flex justify-between w-40 px-3 py-1 ">
+            <div className="bg-white border rounded-lg flex justify-between w-40 px-3 py-1">
               <span className="font-black">10 نيوتن</span>
               <div className="flex gap-4">
                 <button className="text-4xl font-black text-[#FF5454]" >-</button>
@@ -47,6 +92,34 @@ export default function Movement() {
             </div>
           </div>
           <Image className="absolute left-6 bottom-12" src='/assets/car.png' alt="image1" width={280} height={179} />
+        </div>
+        <div className="flex items-center w-full bg-white">
+          <div className='flex items-center gap-10 mt-[8px] w-1/4'>
+              <div onMouseLeave={() => setIsLeavePlay(true)} onMouseOver={() => setIsLeavePlay(false)} className='custom-transition' >
+                  {
+                      isLeavePlay ? <Image onClick={dropBall} src='/assets/playDefault.png' alt='play' width={110} height={50} className='cursor-pointer mt-3' /> :
+                      <Image onClick={dropBall} src='/assets/playHover.png' alt='play' width={110} height={50} className='cursor-pointer mt-3' />
+                  }
+              </div>
+              <div onMouseLeave={() => setIsLeaveRefresh(true)} onMouseOver={() => setIsLeaveRefresh(false)} className='custom-transition' >
+                  {
+                      isLeaveRefresh ? <Image onClick={reload} src='/assets/refreshDefault.png' alt="image1" width={50} height={50} /> :
+                      <Image onClick={reload} src='/assets/refreshHover.png' alt="image1" width={50} height={50} className='cursor-pointer' />
+                  }
+              </div>
+          </div>
+          <hr />
+          <div className="content w-3/4 h-[14%] flex justify-between items-center px-5 py-8 gap-10">
+              {
+                contentIndex !== (contentList.length - 1) ? <Image src='/assets/right.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' onClick={handleNextClick} /> :
+                <Image src='/assets/lastRight.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' />
+              }
+              <p className='text-[22px] flex justify-center items-center h-[60px] font-bold text-[#252C3C] whitespace-pre' >{contentList[contentIndex]}</p>
+                  {
+                      contentIndex !== 0 ? <Image src='/assets/left.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' onClick={handlePrevClick} /> :
+                      <Image src='/assets/lastLeft.png' alt="image1" width={40} height={40} className='cursor-pointer h-[40px]' />
+                  }
+          </div>
         </div>
       </div>
     </>
