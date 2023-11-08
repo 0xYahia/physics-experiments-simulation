@@ -18,6 +18,7 @@ export default function Movement() {
 
   const [newtons, setNewtons] = useState(10);
   const [carRun, setCarRun] = useState(false);
+  const [accelerate, setAccelerte] = useState(0);
   const [isDragMove, setIsDragMove] = useState(false);
   const [isDropped, setIsDropped] = useState(false);
   const chartState = useRef<{
@@ -57,10 +58,14 @@ export default function Movement() {
   ];
 
   const chartOptions = {
+    credits: {
+      enabled: false,
+    },
     chart: {
       type: "line",
       animation: false,
-      height: 370,
+      height: 315,
+      width: 662,
       style: {
         fontFamily:
           "__Tajawal_548b57, __Tajawal_Fallback_548b57 , Arial, sans-serif",
@@ -94,6 +99,7 @@ export default function Movement() {
         },
         align: "high",
       },
+      left: "60px",
       min: 0,
       max: 18,
       tickAmount: 10,
@@ -111,8 +117,9 @@ export default function Movement() {
         rotation: 0,
         offset: 0,
       },
+      left: "60px",
       min: 0,
-      max: 30,
+      max: finalSpeed(newtons) > 30 ? finalSpeed(newtons) : 30,
       tickAmount: 7,
       gridLineWidth: 1,
     },
@@ -170,8 +177,21 @@ export default function Movement() {
       series?.setData([[chartState.current.lastTimePassed, 0], seriesData[i]]);
       i++;
       if (i > steps) {
-        clearInterval(timer);
+        // TO down
+        series?.setData([
+          [chartState.current.lastTimePassed, 0],
+          seriesData[i - 2],
+          [
+            +(chartState.current.lastTimePassed + timePassing(newtons)).toFixed(
+              2
+            ),
+            0,
+          ],
+        ]);
+
         chartState.current.lastTimePassed += +timePassing(newtons).toFixed(2);
+        setAccelerte(acceleration(newtons));
+        clearInterval(timer);
       }
     }, 100);
 
@@ -197,233 +217,241 @@ export default function Movement() {
 
   return (
     <>
-      <DndContext
-        id="movement-dnd-context"
-        onDragEnd={dragEndHandle}
-        onDragMove={dragMoveHandle}
-      >
-        {/* Header */}
-        <div className="header flex justify-between items-center fixed z-50 top-0 left-0 px-6 text-white w-full h-[56px] py-2 bg-[#5484FF]">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/assets/image1.png"
-              alt="image1"
-              width={40}
-              height={40}
-            />
-            <div className="font-bold text-[18px] mt-[5px]">
-              محاكاة التجارب الفيزيائيه
+      <div className=" w-[100%] h-[976px]">
+        <DndContext
+          id="movement-dnd-context"
+          onDragEnd={dragEndHandle}
+          onDragMove={dragMoveHandle}
+        >
+          {/* Header */}
+          <div className="header flex justify-between items-center fixed z-50 top-0 left-0 px-6 text-white w-full h-[56px] py-2 bg-[#5484FF]">
+            <div className="flex items-center gap-2">
+              <Image
+                src="/assets/image1.png"
+                alt="image1"
+                width={40}
+                height={40}
+              />
+              <div className="font-bold text-[18px] mt-[5px]">
+                محاكاة التجارب الفيزيائيه
+              </div>
+            </div>
+            <div className="headerLeft flex items-center">
+              <div className="flex items-center px-3 py-2 gap-4">
+                <Image
+                  src="/assets/forward.png"
+                  alt="image1"
+                  width={24}
+                  height={24}
+                />
+                <p className="text-white font-extrabold text-[18px]">
+                  تجربة مكونات الحركه
+                </p>
+                <Image
+                  src="/assets/backward.png"
+                  alt="image1"
+                  width={24}
+                  height={24}
+                />
+              </div>
+              <hr className="bg-[##ffffff54] w-[32px] h-[1px] rotate-90" />
+              <div className="pr-4 pl-2">
+                <Link
+                  href={"/"}
+                  className="flex items-center  gap-2"
+                  onMouseLeave={() => setIsLeaveBack(true)}
+                  onMouseOver={() => setIsLeaveBack(false)}
+                >
+                  {isLeaveBack ? (
+                    <Image
+                      src="/assets/backDefault.png"
+                      alt="image1"
+                      width={98}
+                      height={98}
+                    />
+                  ) : (
+                    <Image
+                      src="/assets/backHover.png"
+                      alt="image1"
+                      width={98}
+                      height={98}
+                    />
+                  )}
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="headerLeft flex items-center">
-            <div className="flex items-center px-3 py-2 gap-4">
-              <Image
-                src="/assets/forward.png"
-                alt="image1"
-                width={24}
-                height={24}
-              />
-              <p className="text-white font-extrabold text-[18px]">
-                تجربة مكونات الحركه
-              </p>
-              <Image
-                src="/assets/backward.png"
-                alt="image1"
-                width={24}
-                height={24}
-              />
-            </div>
-            <hr className="bg-[##ffffff54] w-[32px] h-[1px] rotate-90" />
-            <div className="pr-4 pl-2">
-              <Link
-                href={"/"}
-                className="flex items-center  gap-2"
-                onMouseLeave={() => setIsLeaveBack(true)}
-                onMouseOver={() => setIsLeaveBack(false)}
-              >
-                {isLeaveBack ? (
-                  <Image
-                    src="/assets/backDefault.png"
-                    alt="image1"
-                    width={98}
-                    height={98}
-                  />
-                ) : (
-                  <Image
-                    src="/assets/backHover.png"
-                    alt="image1"
-                    width={98}
-                    height={98}
-                  />
-                )}
-              </Link>
-            </div>
-          </div>
-        </div>
 
-        {/* Content */}
-        <div className="flex flex-col justify-center items-center w-[100%]  ">
-          {/* <Image src='/assets/movement.png' alt="image1" width={1200} height={1200} /> */}
-          <Droppable id="movement-droppable">
-            <div className="mt-14 bg-[url('/assets/movement.png')] w-[100%] h-[680px] bg-no-repeat bg-cover bg-center  relative ">
-              <div className="mr-5 mt-5 flex flex-col gap-3">
-                <p className="mr-1 font-bold">قوة الدفع</p>
-                <div className="bg-white border rounded-lg flex  justify-between w-52 h px-3 py-1">
-                  <div className="flex items-center">
-                    <span className="text-xl  font-black">{newtons} نيوتن</span>
-                  </div>
-                  <div className="flex gap-4">
-                    <button
-                      onClick={() => {
-                        if (newtons > 1) setNewtons(newtons - 1);
-                      }}
-                    >
-                      <Image
-                        src={minusImg}
-                        alt="minus button"
-                        width={32}
-                        height={32}
-                      />
-                    </button>
-                    <button
-                      onClick={() => setNewtons(newtons + 1)}
-                      // className="text-4xl font-black text-[#39B200]"
-                    >
-                      <Image
-                        src={plusImg}
-                        alt="plus button"
-                        width={32}
-                        height={32}
-                      />
-                    </button>
+          {/* Content */}
+          <div className=" h-[790px] mt-[80px] mx-[24px] ">
+            {/* <Image src='/assets/movement.png' alt="image1" width={1200} height={1200} /> */}
+            <Droppable id="movement-droppable">
+              <div className="h-[100%] relative bg-[url('/assets/movement.png')] bg-no-repeat bg-[length:100%_683px] bg-center">
+                <div className=" flex flex-col gap-1">
+                  <p className=" mt-4 mr-4 font-bold text-xl">قوة الدفع</p>
+                  <div className="bg-white border rounded-lg flex  justify-between w-52 h px-3 py-1 mr-4 ">
+                    <div className="flex items-center">
+                      <span className="text-xl  font-black">
+                        {newtons} نيوتن
+                      </span>
+                    </div>
+                    <div className="flex gap-4">
+                      <button
+                        onClick={() => {
+                          if (newtons > 1) setNewtons(newtons - 1);
+                        }}
+                      >
+                        <Image
+                          src={minusImg}
+                          alt="minus button"
+                          width={32}
+                          height={32}
+                        />
+                      </button>
+                      <button
+                        onClick={() => setNewtons(newtons + 1)}
+                        // className="text-4xl font-black text-[#39B200]"
+                      >
+                        <Image
+                          src={plusImg}
+                          alt="plus button"
+                          width={32}
+                          height={32}
+                        />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="absolute top-0 left-0 shadow-lg rounded-md overflow-hidden ">
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  options={chartOptions}
-                  ref={chartRef}
-                />
-              </div>
-              <Draggable
-                id="movement-draggable"
-                state={{
-                  isDragMove,
-                  isDropped,
-                  carRun,
-                  duration: timePassing(newtons),
-                }}
-              >
-                <div>
-                  <Image
-                    src="/assets/car.png"
-                    alt="image1 "
-                    width={280}
-                    height={179}
+                <div className="absolute top-4 left-4 shadow-lg rounded-md overflow-hidden ">
+                  <HighchartsReact
+                    highcharts={Highcharts}
+                    options={chartOptions}
+                    ref={chartRef}
                   />
                 </div>
-              </Draggable>
-            </div>
-          </Droppable>
+                <Draggable
+                  id="movement-draggable"
+                  state={{
+                    isDragMove,
+                    isDropped,
+                    carRun,
+                    duration: timePassing(newtons),
+                  }}
+                >
+                  <div>
+                    <Image
+                      src="/assets/car.png"
+                      alt="image1 "
+                      width={280}
+                      height={179}
+                    />
+                  </div>
+                </Draggable>
+                <p className=" absolute bottom-0 -translate-x-[50%] -translate-y-[20px] left-2/4 text-lg text-white font-black">
+                  {" "}
+                  التسارع = {accelerate} م/ث²
+                </p>
+              </div>
+            </Droppable>
 
-          <div className="flex items-center w-full bg-white">
-            <div className="flex items-center gap-10 mt-[8px] w-1/4 justify-center">
-              <div
-                onMouseLeave={() => setIsLeavePlay(true)}
-                onMouseOver={() => setIsLeavePlay(false)}
-                className="custom-transition"
-              >
-                {isLeavePlay ? (
+            <div className="flex items-center w-full bg-white h-[103px]">
+              <div className="flex items-center gap-10 mt-[8px] w-1/4 justify-center">
+                <div
+                  onMouseLeave={() => setIsLeavePlay(true)}
+                  onMouseOver={() => setIsLeavePlay(false)}
+                  className="custom-transition"
+                >
+                  {isLeavePlay ? (
+                    <Image
+                      onClick={handlePlayClick}
+                      src="/assets/playDefault.png"
+                      alt="play"
+                      width={110}
+                      height={50}
+                      className="cursor-pointer mt-3"
+                    />
+                  ) : (
+                    <Image
+                      onClick={handlePlayClick}
+                      src="/assets/playHover.png"
+                      alt="play"
+                      width={110}
+                      height={50}
+                      className="cursor-pointer mt-3"
+                    />
+                  )}
+                </div>
+                <div
+                  onMouseLeave={() => setIsLeaveRefresh(true)}
+                  onMouseOver={() => setIsLeaveRefresh(false)}
+                  className="custom-transition"
+                >
+                  {isLeaveRefresh ? (
+                    <Image
+                      onClick={reload}
+                      src="/assets/refreshDefault.png"
+                      alt="image1"
+                      width={50}
+                      height={50}
+                    />
+                  ) : (
+                    <Image
+                      onClick={reload}
+                      src="/assets/refreshHover.png"
+                      alt="image1"
+                      width={50}
+                      height={50}
+                      className="cursor-pointer"
+                    />
+                  )}
+                </div>
+              </div>
+              <hr className="h-16 w-[2px] ml-11 bg-[#CCD2D9]" />
+              <div className="content w-3/4 h-[14%] flex justify-between items-center px-5 py-8 gap-10">
+                {contentIndex !== contentList.length - 1 ? (
                   <Image
-                    onClick={handlePlayClick}
-                    src="/assets/playDefault.png"
-                    alt="play"
-                    width={110}
-                    height={50}
-                    className="cursor-pointer mt-3"
+                    src="/assets/right.png"
+                    alt="image1"
+                    width={40}
+                    height={40}
+                    className="cursor-pointer h-[40px]"
+                    onClick={handleNextClick}
                   />
                 ) : (
                   <Image
-                    onClick={handlePlayClick}
-                    src="/assets/playHover.png"
-                    alt="play"
-                    width={110}
-                    height={50}
-                    className="cursor-pointer mt-3"
+                    src="/assets/lastRight.png"
+                    alt="image1"
+                    width={40}
+                    height={40}
+                    className="cursor-pointer h-[40px]"
                   />
                 )}
-              </div>
-              <div
-                onMouseLeave={() => setIsLeaveRefresh(true)}
-                onMouseOver={() => setIsLeaveRefresh(false)}
-                className="custom-transition"
-              >
-                {isLeaveRefresh ? (
+                <p className="text-[22px] flex justify-center items-center h-[60px] font-bold text-[#252C3C] whitespace-pre">
+                  {contentList[contentIndex]}
+                </p>
+                {contentIndex !== 0 ? (
                   <Image
-                    onClick={reload}
-                    src="/assets/refreshDefault.png"
+                    src="/assets/left.png"
                     alt="image1"
-                    width={50}
-                    height={50}
+                    width={40}
+                    height={40}
+                    className="cursor-pointer h-[40px]"
+                    onClick={handlePrevClick}
                   />
                 ) : (
                   <Image
-                    onClick={reload}
-                    src="/assets/refreshHover.png"
+                    src="/assets/lastLeft.png"
                     alt="image1"
-                    width={50}
-                    height={50}
-                    className="cursor-pointer"
+                    width={40}
+                    height={40}
+                    className="cursor-pointer h-[40px]"
                   />
                 )}
               </div>
-            </div>
-            <hr className="h-16 w-[2px] ml-11 bg-[#CCD2D9]" />
-            <div className="content w-3/4 h-[14%] flex justify-between items-center px-5 py-8 gap-10">
-              {contentIndex !== contentList.length - 1 ? (
-                <Image
-                  src="/assets/right.png"
-                  alt="image1"
-                  width={40}
-                  height={40}
-                  className="cursor-pointer h-[40px]"
-                  onClick={handleNextClick}
-                />
-              ) : (
-                <Image
-                  src="/assets/lastRight.png"
-                  alt="image1"
-                  width={40}
-                  height={40}
-                  className="cursor-pointer h-[40px]"
-                />
-              )}
-              <p className="text-[22px] flex justify-center items-center h-[60px] font-bold text-[#252C3C] whitespace-pre">
-                {contentList[contentIndex]}
-              </p>
-              {contentIndex !== 0 ? (
-                <Image
-                  src="/assets/left.png"
-                  alt="image1"
-                  width={40}
-                  height={40}
-                  className="cursor-pointer h-[40px]"
-                  onClick={handlePrevClick}
-                />
-              ) : (
-                <Image
-                  src="/assets/lastLeft.png"
-                  alt="image1"
-                  width={40}
-                  height={40}
-                  className="cursor-pointer h-[40px]"
-                />
-              )}
             </div>
           </div>
-        </div>
-      </DndContext>
+        </DndContext>
+      </div>
     </>
   );
 }

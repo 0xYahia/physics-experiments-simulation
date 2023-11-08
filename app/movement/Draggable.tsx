@@ -46,7 +46,7 @@ const Draggable: FC<DraggableProps> = (props) => {
           }),
         ...(props.state.isDropped &&
           props.state.carRun && {
-            transform: "translate(-360%, 0)",
+            transform: "translate(-349%, 0)",
             transition: `transform 500ms ease-in-out`,
             right: "1.5rem",
             left: "unset",
@@ -56,13 +56,13 @@ const Draggable: FC<DraggableProps> = (props) => {
         ...(props.state.carRun &&
           !props.state.isDragMove &&
           !props.state.isDropped && {
-            transform: "translate(360% ,0)",
+            transform: "translate(345% ,0)",
             transition: `transform ${props.state.duration}s ease-in`,
           }),
       }}
       {...listeners}
       {...attributes}
-      className={`absolute left-6 bottom-10 w-fit`}
+      className={`absolute left-6 bottom-10  w-fit`}
     >
       {props.children}
     </button>

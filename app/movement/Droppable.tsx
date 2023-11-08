@@ -11,7 +11,7 @@ const Droppable: FC<DroppableProps> = (props) => {
   });
 
   return (
-    <div ref={setNodeRef} className="w-full">
+    <div ref={setNodeRef} className="w-full h-[683px]">
       {props.children}
     </div>
   );
