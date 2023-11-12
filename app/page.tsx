@@ -54,7 +54,12 @@ export default function Test() {
               />
             </div>
             <div className="bg-white p-6 flex items-center gap-[18px] rounded-b-lg	">
-              <div className="w-[35px] h-[35px] rounded-full bg-[#EDEDED]"></div>
+            <Image
+                src="/assets/car.webp"
+                alt="image1"
+                width={34}
+                height={34}
+              />
               <p className="text-[24px] mt-2 text-black font-bold p2">
                 تجربة مكونات الحركه
               </p>
