@@ -200,7 +200,8 @@ export default function Movement() {
   };
 
   const reload = () => {
-    setCarRun(false);
+    // setCarRun(false);
+    location.reload();
   };
 
   const dragEndHandle = (e: DragEndEvent) => {
@@ -217,7 +218,7 @@ export default function Movement() {
 
   return (
     <>
-      <div className=" w-[100%] h-[976px]">
+      <div className=" w-[100%] h-[976px] flex justify-center">
         <DndContext
           id="movement-dnd-context"
           onDragEnd={dragEndHandle}
@@ -283,7 +284,7 @@ export default function Movement() {
           </div>
 
           {/* Content */}
-          <div className=" h-[790px] mt-[80px] mx-[24px] ">
+          <div className=" h-[790px] w-[1392px] mt-[80px]  ">
             {/* <Image src='/assets/movement.png' alt="image1" width={1200} height={1200} /> */}
             <Droppable id="movement-droppable">
               <div className="h-[100%] relative bg-[url('/assets/movement.png')] bg-no-repeat bg-[length:100%_683px] bg-center">
